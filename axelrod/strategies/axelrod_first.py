@@ -922,7 +922,7 @@ class FirstByTidemanAndChieruzzi(Player):
         self.opponent_score = 0
         self.last_fresh_start = 0
         self.fresh_start = False
-        self.remembered_number_of_opponent_defectioons = 0
+        self.remembered_number_of_opponent_defections = 0
 
     def _decrease_retaliation_counter(self):
         """Lower the remaining owed retaliation count and flip to non-retaliate
@@ -937,7 +937,7 @@ class FirstByTidemanAndChieruzzi(Player):
         self.is_retaliating = False
         self.retaliation_length = 0
         self.retaliation_remaining = 0
-        self.remembered_number_of_opponent_defectioons = 0
+        self.remembered_number_of_opponent_defections = 0
 
     def _score_last_round(self, opponent: Player):
         """Updates the scores for each player."""
@@ -953,7 +953,7 @@ class FirstByTidemanAndChieruzzi(Player):
             return C
 
         if opponent.history[-1] == D:
-            self.remembered_number_of_opponent_defectioons += 1
+            self.remembered_number_of_opponent_defections += 1
 
         # Calculate the scores.
         self._score_last_round(opponent)
@@ -982,8 +982,8 @@ class FirstByTidemanAndChieruzzi(Player):
                 std_deviation = (N ** (1 / 2)) / 2
                 lower = N / 2 - 3 * std_deviation
                 upper = N / 2 + 3 * std_deviation
-                if (self.remembered_number_of_opponent_defectioons <= lower or
-                    self.remembered_number_of_opponent_defectioons >= upper):
+                if (self.remembered_number_of_opponent_defections <= lower or
+                    self.remembered_number_of_opponent_defections >= upper):
                     # Opponent deserves a fresh start
                     self.last_fresh_start = current_round
                     self._fresh_start()
